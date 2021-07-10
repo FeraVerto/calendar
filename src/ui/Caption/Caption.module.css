@@ -1,0 +1,48 @@
+.caption_table {
+    margin: 0 auto;
+    margin-bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.caption_table_month {
+    font-weight: bold;
+}
+
+.arrow {
+    width: 5.5px;
+    height: 5.5px;
+    border-top: 1px solid var(--secondary-color-arrow);
+    border-right: 1px solid var(--secondary-color-arrow);
+
+    position: relative;
+}
+
+
+.arrow_left {
+    transform: rotate(-135deg);
+}
+
+.arrow_left:before,
+.arrow_right:before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: -10px;
+    width: 27px;
+    height: 27px;
+    z-index: -2;
+    transform: rotate(45deg);
+}
+
+.arrow_right {
+    transform: rotate(45deg);
+}
+
+.arrow_border {
+    width: 24px;
+    height: 24px;
+}
