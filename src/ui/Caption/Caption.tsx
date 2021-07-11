@@ -1,5 +1,5 @@
 import s from "./Caption.module.css"
-import React from "react"
+import React, {ReactElement} from "react"
 
 type CaptionType = {
     month: string
@@ -7,7 +7,7 @@ type CaptionType = {
     onSwitchMonth: (direction: string) => void
 }
 
-export const Caption = ({month, year, onSwitchMonth}: CaptionType) => {
+export const Caption = ({month, year, onSwitchMonth}: CaptionType): ReactElement => {
     return (
         <caption className={s.caption_table}>
             <span className={`${s.arrow_left} ${s.arrow}`} onClick={() => onSwitchMonth("back")}> </span>

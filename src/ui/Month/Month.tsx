@@ -1,8 +1,8 @@
-import React, {Dispatch, useEffect, useState} from "react"
+import React, {Dispatch, ReactElement, useEffect, useState} from "react"
 import s from "./Month.module.css"
 import {ActionType, onSwitchMonthAC, setSelectDaysAC} from "../../bll/calendarReducers"
 import {uppercaseFirstLetter} from "../../common/utils/uppercaseFirstLetter"
-import dayjs from "dayjs"
+import dayjs, {Dayjs} from "dayjs"
 import isToday from "dayjs/plugin/isToday"
 import arraySupport from "dayjs/plugin/arraySupport"
 import updateLocale from "dayjs/plugin/updateLocale"
@@ -34,7 +34,7 @@ type MonthType = {
 }
 
 export type DayType = {
-    date: any
+    date: Dayjs
     month: number
     isCurrentDay: boolean
     isCurrentMonth: boolean
@@ -44,21 +44,34 @@ export type DayType = {
 }
 
 
-export const Month = ({year, month, selectedDays, dispatch}: MonthType) => {
-    const date = dayjs()
+export const Month = ({year, month, selectedDays, dispatch}: MonthType): ReactElement => {
+    const date: Dayjs = dayjs()
 
-    const [selectDate, setSelectDate] = useState<string>("")
+    const [selectDate, setSelectDate] = useState<{ action: "" | "add" | "delete", date: string }>({
+        action: "",
+        date: ""
+    })
 
     useEffect(() => {
-        selectDate !== "" && localStorage.setItem(selectDate, selectDate)
-        const data = getDate()
+        if (selectDate.action === "add") {
+            localStorage.setItem(selectDate.date, selectDate.date)
+
+        }
+        if (selectDate.action === "delete") {
+            localStorage.removeItem(selectDate.date)
+        }
+        setSelectDate({
+            action: "",
+            date: ""
+        })
+        const data: Array<string> = getDate()
         data && dispatch(setSelectDaysAC(data))
-    }, [selectDate])
+    }, [selectDate.date, selectDate.action])
 
     const table: Array<Array<DayType>> = []
     let rows: Array<DayType> = []
 
-    let startCalendarDay = date
+    let startCalendarDay: Dayjs = date
         .month(month)
         .year(year)
         .startOf("month")
@@ -82,7 +95,7 @@ export const Month = ({year, month, selectedDays, dispatch}: MonthType) => {
         table.push(rows)
     }
 
-    const monthName = uppercaseFirstLetter(date.month(month).format("MMMM"))
+    const monthName: string = uppercaseFirstLetter(date.month(month).format("MMMM"))
 
     const onSwitchMonth = (direction: string) => {
         dispatch(onSwitchMonthAC(direction))
@@ -94,10 +107,11 @@ export const Month = ({year, month, selectedDays, dispatch}: MonthType) => {
             <TitleColumn/>
             <tbody className={s.table_rows_container}>
                 {
-                    table.map((t, i) =>
+                    table.map((t: Array<DayType>, i: number) =>
                         <tr key={i} className={s.table_rows}>
                             {
-                                t.map((ceil, i) => <Days key={i} selectDate={selectDate} setSelectDate={setSelectDate} ceil={ceil}/>)
+                                t.map((ceil: DayType) =>
+                                    <Days selectedDays={selectedDays} key={ceil.date.format("YYYY-MM-DD")} setSelectDate={setSelectDate} ceil={ceil}/>)
                             }
                         </tr>)
                 }

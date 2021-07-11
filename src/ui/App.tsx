@@ -1,11 +1,11 @@
-import React from "react"
+import React, {ReactElement} from "react"
 import s from "./App.module.css"
 import {Month} from "./Month/Month"
 import {useDispatch, useSelector} from "react-redux"
 import {AppStateType} from "../bll/redux-store"
 
 
-const App = () => {
+const App = (): ReactElement => {
 
     const month = useSelector<AppStateType, number>(state => state.calendar.currentMonth)
     const year = useSelector<AppStateType, number>(state => state.calendar.currentYear)

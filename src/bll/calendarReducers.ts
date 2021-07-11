@@ -50,5 +50,18 @@ export const calendarReducer = (state = initialState, action: ActionType): Calen
 }
 
 
+
 export const onSwitchMonthAC = (direction: string) => ({type: SWITCH_MONTH, direction} as const)
 export const setSelectDaysAC = (selectedDays: Array<string>) => ({type: SET_SELECT_DAYS, selectedDays} as const)
+/*
+export const removeDateAC = (date: string) => {
+    console.log("remove", date)
+    return {type: REMOVE_DATE, date} as const
+}*/
+
+
+/*case REMOVE_DATE:
+    return {
+        ...state,
+        selectedDays: state.selectedDays.filter(f => f !== action.date)
+    }*/

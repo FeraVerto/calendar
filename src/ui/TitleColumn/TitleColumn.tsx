@@ -1,7 +1,7 @@
 import s from "./TitleColumn.module.css"
-import React from "react"
+import React, {ReactElement} from "react"
 
-export const TitleColumn = () => {
+export const TitleColumn = (): ReactElement => {
     const weeks = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"]
     return (
         <thead>
