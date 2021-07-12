@@ -21,6 +21,7 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
+        "react/jsx-indent-props": [2, "first"],
         "indent": [
             "error",
             4,

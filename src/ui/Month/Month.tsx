@@ -16,7 +16,6 @@ import {Day} from "../Day/Day"
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore"
 import {onMultiSelectDay} from "../../common/utils/onMultiSelectDay"
 
-
 dayjs.locale("ru")
 
 dayjs.extend(isToday)
@@ -67,6 +66,7 @@ export const Month = ({year, month, selectedDays, dispatch}: MonthType): ReactEl
         if (selectDate.action === "delete") {
             localStorage.removeItem(selectDate.date)
         }
+
         setSelectDate({
             action: "",
             date: ""
@@ -82,8 +82,6 @@ export const Month = ({year, month, selectedDays, dispatch}: MonthType): ReactEl
 
     }, [selectDate.date, selectDate.action, multiSelect])
 
-    const table: Array<Array<DayType>> = []
-    let rows: Array<DayType> = []
 
     let startCalendarDay: Dayjs = date
         .month(month)
@@ -91,6 +89,8 @@ export const Month = ({year, month, selectedDays, dispatch}: MonthType): ReactEl
         .startOf("month")
         .weekday(0)
 
+    const table: Array<Array<DayType>> = []
+    let rows: Array<DayType> = []
 
     for (let i = 0; i < ROWS_TABLE; i++) {
         rows = []
@@ -125,7 +125,13 @@ export const Month = ({year, month, selectedDays, dispatch}: MonthType): ReactEl
                         <tr key={i} className={s.table_rows}>
                             {
                                 t.map((ceil: DayType) =>
-                                    <Day multiSelect={multiSelect} setMultiSelect={setMultiSelect} selectedDays={selectedDays} key={ceil.date.format("YYYY-MM-DD")} setSelectDate={setSelectDate} ceil={ceil}/>)
+                                    <Day
+                                        multiSelect={multiSelect}
+                                        setMultiSelect={setMultiSelect}
+                                        selectedDays={selectedDays}
+                                        key={ceil.date.format("YYYY-MM-DD")}
+                                        setSelectDate={setSelectDate}
+                                        ceil={ceil}/>)
                             }
                         </tr>)
                 }

@@ -1,7 +1,7 @@
 import dayjs, {Dayjs} from "dayjs"
 import {MultiSelectType} from "../../ui/Month/Month"
 
-export const onMultiSelectDay = (date: MultiSelectType) => {
+export const onMultiSelectDay = (date: MultiSelectType): Array<string> => {
 
     const startDay: Dayjs = dayjs(date.start, "YYYY-MM-DD")
     const endDay: Dayjs = dayjs(date.end, "YYYY-MM-DD")
