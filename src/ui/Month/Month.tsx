@@ -9,10 +9,12 @@ import updateLocale from "dayjs/plugin/updateLocale"
 import localeData from "dayjs/plugin/localeData"
 import weekday from "dayjs/plugin/weekday"
 import "dayjs/locale/ru"
-import {Days} from "../Day/Days"
 import {TitleColumn} from "../TitleColumn/TitleColumn"
 import {Caption} from "../Caption/Caption"
 import {getDate} from "../../common/utils/getDate"
+import {Day} from "../Day/Day"
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore"
+import {onMultiSelectDay} from "../../common/utils/onMultiSelectDay"
 
 
 dayjs.locale("ru")
@@ -22,6 +24,8 @@ dayjs.extend(arraySupport)
 dayjs.extend(updateLocale)
 dayjs.extend(localeData)
 dayjs.extend(weekday)
+dayjs.extend(isSameOrBefore)
+
 
 const ROWS_TABLE = 6
 const COLS_TABLE = 7
@@ -43,6 +47,8 @@ export type DayType = {
     isActive: boolean
 }
 
+export type MultiSelectType = { start: null | string, end: null | string }
+
 
 export const Month = ({year, month, selectedDays, dispatch}: MonthType): ReactElement => {
     const date: Dayjs = dayjs()
@@ -52,10 +58,11 @@ export const Month = ({year, month, selectedDays, dispatch}: MonthType): ReactEl
         date: ""
     })
 
+    const [multiSelect, setMultiSelect] = useState<MultiSelectType>({start: null, end: null})
+
     useEffect(() => {
         if (selectDate.action === "add") {
             localStorage.setItem(selectDate.date, selectDate.date)
-
         }
         if (selectDate.action === "delete") {
             localStorage.removeItem(selectDate.date)
@@ -64,9 +71,16 @@ export const Month = ({year, month, selectedDays, dispatch}: MonthType): ReactEl
             action: "",
             date: ""
         })
+
+        if (multiSelect.start && multiSelect.end) {
+            onMultiSelectDay(multiSelect).map(m => localStorage.setItem(m, m))
+            setMultiSelect({start: null, end: null})
+        }
+
         const data: Array<string> = getDate()
         data && dispatch(setSelectDaysAC(data))
-    }, [selectDate.date, selectDate.action])
+
+    }, [selectDate.date, selectDate.action, multiSelect])
 
     const table: Array<Array<DayType>> = []
     let rows: Array<DayType> = []
@@ -111,7 +125,7 @@ export const Month = ({year, month, selectedDays, dispatch}: MonthType): ReactEl
                         <tr key={i} className={s.table_rows}>
                             {
                                 t.map((ceil: DayType) =>
-                                    <Days selectedDays={selectedDays} key={ceil.date.format("YYYY-MM-DD")} setSelectDate={setSelectDate} ceil={ceil}/>)
+                                    <Day multiSelect={multiSelect} setMultiSelect={setMultiSelect} selectedDays={selectedDays} key={ceil.date.format("YYYY-MM-DD")} setSelectDate={setSelectDate} ceil={ceil}/>)
                             }
                         </tr>)
                 }
@@ -119,3 +133,5 @@ export const Month = ({year, month, selectedDays, dispatch}: MonthType): ReactEl
         </table>
     )
 }
+
+
