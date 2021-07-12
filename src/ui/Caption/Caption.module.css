@@ -1,7 +1,7 @@
 .caption_table {
-    margin: 0 auto;
+    margin-left: 9px;
+    margin-right: 9px;
     margin-bottom: 30px;
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
