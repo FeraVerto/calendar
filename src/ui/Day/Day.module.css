@@ -1,14 +1,13 @@
-
-
 .table_ceil {
     width: 27px;
     height: 27px;
-    font-size: 14px;
-    line-height: 17px;
     display: flex;
     justify-content: center;
     align-items: center;
     vertical-align: center;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--primary-color);
 }
 
 
@@ -29,7 +28,7 @@
     width: 27px;
     height: 27px;
     border-radius: 50%;
-    color: #707070;
+    color: var(--secondary-color-text-arrow);
     border: 1px solid var(--secondary-color);
 }
 

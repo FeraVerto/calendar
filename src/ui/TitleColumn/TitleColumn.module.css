@@ -1,11 +1,17 @@
+.title {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
 .title_column {
-    margin-bottom: 27px;
+    margin-bottom: 15px;
+    margin-right: 5px;
     width: 100%;
     display: flex;
     justify-content: space-between;
+
     color: var(--secondary-color-title-column);
     font-weight: bold;
     font-size: 12px;
-
     line-height: 16px;
 }

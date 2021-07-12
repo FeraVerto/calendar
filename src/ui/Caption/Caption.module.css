@@ -15,8 +15,8 @@
 .arrow {
     width: 5.5px;
     height: 5.5px;
-    border-top: 1px solid var(--secondary-color-arrow);
-    border-right: 1px solid var(--secondary-color-arrow);
+    border-top: 1px solid var(--secondary-color-text-arrow);
+    border-right: 1px solid var(--secondary-color-text-arrow);
 
     position: relative;
 }

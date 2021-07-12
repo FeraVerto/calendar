@@ -1,12 +1,12 @@
 /*временные стили*/
 .table {
     margin: 0 auto;
-    padding: 30px 20px 40px 20px;
+    padding: 25px 12px 40px 12px;
     display: flex;
     flex-direction: column;
     width: 306px;
     height: 367px;
-    box-shadow: 0px 1px 4px var(--secondary-color-arrow);
+    box-shadow: 0px 1px 4px var(--secondary-color-text-arrow);
 }
 
 .table_rows_container {
