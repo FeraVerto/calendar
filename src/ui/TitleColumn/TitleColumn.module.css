@@ -6,7 +6,9 @@
 .title_column {
     margin-bottom: 15px;
     margin-right: 5px;
+
     width: 100%;
+
     display: flex;
     justify-content: space-between;
 

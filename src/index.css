@@ -10,7 +10,7 @@ body {
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro,'PT Sans', Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -20,6 +20,7 @@ code {
     --secondary-color-title-column: #7057CD;
     --secondary-color-hover: #F2F4F5;
     --secondary-color-text-arrow: #707070;
-    --active-color: #A0A0A0
+    --active-color: #A0A0A0;
+    --selected-day-color: #fff;
 }
 

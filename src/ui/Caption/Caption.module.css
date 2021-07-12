@@ -1,11 +1,9 @@
 .caption_table {
-    margin-left: 9px;
-    margin-right: 9px;
-    margin-bottom: 30px;
+    margin: 0 9px 30px 9px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .caption_table_month {
@@ -15,10 +13,11 @@
 .arrow {
     width: 5.5px;
     height: 5.5px;
-    border-top: 1px solid var(--secondary-color-text-arrow);
-    border-right: 1px solid var(--secondary-color-text-arrow);
 
     position: relative;
+
+    border-top: 1px solid var(--secondary-color-text-arrow);
+    border-right: 1px solid var(--secondary-color-text-arrow);
 }
 
 
@@ -28,12 +27,14 @@
 
 .arrow_left:before,
 .arrow_right:before {
+    width: 27px;
+    height: 27px;
+
     content: "";
     position: absolute;
     top: -14px;
     left: -10px;
-    width: 27px;
-    height: 27px;
+
     z-index: -2;
     transform: rotate(45deg);
 }
