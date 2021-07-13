@@ -28,6 +28,7 @@ export const Day = ({
         if (e.nativeEvent.shiftKey) {
             setMultiSelect({...multiSelect, end: date})
         }
+
         if (isContainedInLocaleStorage) {
             setSelectDate({action: "delete", date: date})
         } else if (!isContainedInLocaleStorage && !e.nativeEvent.shiftKey) {
